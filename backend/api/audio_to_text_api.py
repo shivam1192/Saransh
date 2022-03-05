@@ -1,4 +1,5 @@
 
+from xml.dom.minidom import Document, DocumentFragment
 from flask_restful import Api, Resource, reqparse
 
 class AudioToText(Resource):
