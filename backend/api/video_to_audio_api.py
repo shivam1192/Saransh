@@ -1,5 +1,4 @@
 import pyrebase
-
 config  = {
   "projectId": "saransh-36252",
   "appId": "1:810027509020:web:c38d4b4ce5ea82a202c6d9",
@@ -20,7 +19,6 @@ import os
 from flask_restful import Api, Resource, reqparse
 from flask import request
 import moviepy.editor as mp
-from firestore.py import storage
 
 class VideoToAudio(Resource):
   def get(self):
@@ -31,6 +29,7 @@ class VideoToAudio(Resource):
       videos = 'videos'
       videoParsingIndex = videoLink.find(videos)
       generate_link = videoLink[0:videoParsingIndex+6] + '%2F' + videoLink[videoParsingIndex+7:] + '&token='+token
+      print(generate_link)
       my_clip = mp.VideoFileClip(generate_link)
       my_clip.audio.write_audiofile(r"my_result.mp3")
       storage.child("audio/new.mp3").put("my_result.mp3")
