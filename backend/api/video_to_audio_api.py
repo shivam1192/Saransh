@@ -20,7 +20,6 @@ import os
 from flask_restful import Api, Resource, reqparse
 from flask import request
 import moviepy.editor as mp
-from firestore.py import storage
 
 class VideoToAudio(Resource):
   def get(self):
