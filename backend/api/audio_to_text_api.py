@@ -46,7 +46,7 @@ class AudioToText(Resource):
         # os.remove(id + ".txt")
         return {
         'resultStatus': 'SUCCESS',
-        'text-link': text_link,
+        'text_link': text_link,
         'message': "audio to text Api Handler"
         }
     else:

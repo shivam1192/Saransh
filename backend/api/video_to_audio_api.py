@@ -38,7 +38,7 @@ class VideoToAudio(Resource):
       return {
         'resultStatus': 'SUCCESS',
         'status': 200,
-        'data-link' : audio_link,
+        'data_link' : audio_link,
         'message': "video to audio Api Handler"
         }
     else:
