@@ -1,24 +1,12 @@
-import pyrebase
-config  = {
-  "projectId": "saransh-36252",
-  "appId": "1:810027509020:web:c38d4b4ce5ea82a202c6d9",
-  "databaseURL": "https://saransh-36252-default-rtdb.firebaseio.com",
-  "storageBucket": "saransh-36252.appspot.com",
-  "locationId": "us-central",
-  "apiKey": "AIzaSyAYkvtXrRtT2V6WVtR3vBP4IL7xDVBs2BE",
-  "authDomain": "saransh-36252.firebaseapp.com",
-  "messagingSenderId": "810027509020",
-  "measurementId": "G-B0JCFZ62LK"
-};
-
-firebase = pyrebase.initialize_app(config)
-storage = firebase.storage()
-
-
 import os
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Resource
 from flask import request
 import moviepy.editor as mp
+import pyrebase
+from api.helpers import helper
+
+firebase = pyrebase.initialize_app(helper.config)
+storage = firebase.storage()
 
 class VideoToAudio(Resource):
   def get(self):
