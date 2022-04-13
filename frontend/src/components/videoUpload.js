@@ -4,6 +4,8 @@ import storage from '../firebase';
 import { getStorage, ref, listAll,getDownloadURL } from "firebase/storage";
 import { Button, Spinner } from 'react-bootstrap';
 import Icon from '../icons8-ok.svg'
+import { saveAs } from "file-saver";
+
 
 const VideoUpload = () => {
 const [video , setVideo] = useState('');
@@ -12,7 +14,15 @@ const [videoUpload,setVideoUpload] = useState(false)
 const [loadingVideoToAudio,setLoadingVideoToAudio] = useState(false)
 const [loadingAudioToText,setLoadingAudioToText] = useState(false)
 const [loadingTextToSummary,setLoadingTextToSummary] = useState(false)
+const [download,setDownload] = useState(false)
+const [link,setLink] = useState()
 
+const saveFile = () => {
+  saveAs(
+    link,
+    "subtitle_summarisation.pdf"
+  );
+};
 const temp = (folder) =>{
     setVideoUpload(false)
   var listRef =  ref(storage,folder)
@@ -33,7 +43,9 @@ const temp = (folder) =>{
             fetch(`http://127.0.0.1:5000/flask/texttosummary?textlink=${actualData.data_link}`)
             .then((response) => response.json())
             .then((actualData) =>{
+              setLink(actualData.data_link)
                 setLoadingTextToSummary(false)
+                setDownload(true)
               console.log(actualData)
             });
           });
@@ -96,7 +108,9 @@ const upload = ()=>{
             : <><img src = {Icon}></img>We are Summarising your text document.</>
         }
         </h5><br/>
-               
+           {
+             download ? <Button onClick={saveFile}>Download</Button> :null
+           }   
         </> : null
       }
       </>
