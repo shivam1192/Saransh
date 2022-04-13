@@ -48,7 +48,7 @@ class TextToSummary(Resource):
     if textLink is not None:
       text = 'text'
       textParsingIndex = textLink.find(text)
-      generate_link = textLink[0:textParsingIndex+4] + '%2F' + textLink[textParsingIndex+5:] + '&token='+token
+      generate_link = textLink[0:textParsingIndex+4] + '%2F' + textLink[textParsingIndex+5:] 
       print(generate_link)
 
       response = requests.get(generate_link)
@@ -66,7 +66,7 @@ class TextToSummary(Resource):
       return {
         'resultStatus': 'SUCCESS',
         'status': 200,
-        'summary_link' : summary_link,
+        'data_link' : summary_link,
         'message': "video to audio Api Handler"
         }
     else:

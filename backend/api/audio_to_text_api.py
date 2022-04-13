@@ -18,7 +18,7 @@ class AudioToText(Resource):
     if audioLink is not None:
 
         audioParsingIndex = audioLink.find('audio')
-        audioLink = audioLink[0:audioParsingIndex+5] + '%2F' + audioLink[audioParsingIndex+6:] + '&token=' + token
+        audioLink = audioLink[0:audioParsingIndex+5] + '%2F' + audioLink[audioParsingIndex+6:] 
         endpoint = "https://api.assemblyai.com/v2/transcript"
         audio = {"audio_url" : audioLink}
         headers = {
@@ -50,7 +50,7 @@ class AudioToText(Resource):
 
         return {
         'resultStatus': 'SUCCESS',
-        'text_link': text_link,
+        'data_link': text_link,
         'message': "audio to text Api Handler"
         }
     else:
