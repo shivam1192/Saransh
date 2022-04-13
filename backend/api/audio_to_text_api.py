@@ -44,8 +44,8 @@ class AudioToText(Resource):
         with open(filename, 'w') as f:
             f.write(textResponse.json()['text'])
       
-        text_link = storage.child("text/" + id).put(id + ".txt")
-        text_link = storage.child("text/" + id).get_url(None)
+        storage.child("text/new.txt").put(id + ".txt")
+        text_link = storage.child("text/new.txt").get_url(None)
         os.remove(filename)
 
         return {
