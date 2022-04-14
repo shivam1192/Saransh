@@ -18,7 +18,11 @@ class AudioToText(Resource):
     if audioLink is not None:
 
         audioParsingIndex = audioLink.find('audio')
-        audioLink = audioLink[0:audioParsingIndex+5] + '%2F' + audioLink[audioParsingIndex+6:] 
+        if token != None:
+            audioLink = audioLink[0:audioParsingIndex+5] + '%2F' + audioLink[audioParsingIndex+6:] + '&token='+token 
+        else:
+            audioLink = audioLink[0:audioParsingIndex+5] + '%2F' + audioLink[audioParsingIndex+6:] 
+        
         endpoint = "https://api.assemblyai.com/v2/transcript"
         audio = {"audio_url" : audioLink}
         headers = {
